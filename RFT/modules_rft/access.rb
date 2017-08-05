@@ -3,14 +3,12 @@ module Access
   def self.reader(to_read)
     if to_read.is_a? String
       num_lines = 0
-      puts $path_file
+      puts $folder_path + '/' + to_read
       File.open(to_read, "r").each do |line|
         puts "#{num_lines += 1} | " + line
       end
     elsif to_read.is_a? Array
-      path = File.expand_path File.dirname(__FILE__)
       to_read.each do |file|
-        puts path + '/' + file
         self.reader(file)
         puts ' '
       end
