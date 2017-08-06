@@ -13,7 +13,7 @@ BEGIN {
 
   $folder_path = Dir.pwd
 
-  if File.file? ARGV[0]
+  if File.file?(ARGV[0]) && ['.txt', '.md', '.otd', '.doc', '.docx'].any? { |format| ARGV[0].include?(format) }
     $file_name = ARGV[0]
     $file_path = File.expand_path File.dirname(__FILE__) + '/' +ARGV[0] 
   end
