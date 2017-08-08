@@ -18,6 +18,18 @@ module Mutation
     end
   end
 
+  def self.end_of_line(to_add, end_line)
+    arr_lines = IO.readlines(to_add)
+    arr_lines.each do |ending|
+      ending += end_line
+    end
+    puts arr_lines
+    end_file = File.new(to_add, "w+")
+    for ender in 0...arr_lines.length
+      end_file.syswrite(arr_lines[ender])
+    end
+  end
+
   def self.clear_text(to_clear)
     File.open(to_clear, "w").syswrite('')
   end

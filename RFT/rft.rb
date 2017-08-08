@@ -79,6 +79,7 @@ when 3
       when '-copy' then Mutation.copy($file_name, ARGV[2])
       when '-remove' then Mutation.remove($file_name, ARGV[2])
       when '-uniqs' then Access.uniqs($file_name, ARGV[2])
+      when '-end' then Mutation.end_of_line($file_name, ARGV[2])
       else Options.syntax_error
     end
   elsif ARGV[0] == '--All'
