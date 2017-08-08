@@ -18,6 +18,7 @@ module Options
     puts "### Access Commands with 3 paramaters ###"
     puts "$ ruby RFT/rft.rb filename.format -find phrase # searches for phrase in file and, if spoted, displays the lines"
     puts "$ ruby RFT/rft.rb --All -find phrase # searches for phrase in all textlike files and, if spoted, displays the lines"
+    puts "$ ruby RFT/rft.rbfilename.format -uniqs uniqsname.format # creates new file with uniq phrases only"
     puts " "
     puts "### Mutation Commands with 2 parameters ###"
     puts "$ ruby RFT/rft.rb filename.format -owtxt # overwrites text in file content by user input"

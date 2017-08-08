@@ -78,12 +78,13 @@ when 3
       when '-rename' then Mutation.rename($file_name, ARGV[2])
       when '-copy' then Mutation.copy($file_name, ARGV[2])
       when '-remove' then Mutation.remove($file_name, ARGV[2])
+      when '-uniqs' then Access.uniqs($file_name, ARGV[2])
       else Options.syntax_error
     end
   elsif ARGV[0] == '--All'
     case ARGV[1]
       when '-find' then Access.seeker(list)
-      when '-remove' then Mutation.remove(list, ARG[2])
+      when '-remove' then Mutation.remove(list, ARGV[2])
       else Options.syntax_error
     end
   end

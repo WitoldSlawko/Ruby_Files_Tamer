@@ -33,4 +33,20 @@ module Access
     end
   end
 
+  def self.uniqs(to_uniq, the_uniqs)
+    if to_uniq.is_a? String
+      arr_lines = IO.readlines(to_uniq)
+      arr_flat = []
+      for unq in 0...arr_lines.length do
+        arr_flat << arr_lines[unq].split(" ")
+        arr_flat.uniq!
+      end
+      arr_flat.flatten!
+      uniqs_file = File.new(the_uniqs, "w")
+      for un in 0...arr_flat.length do
+        uniqs_file.syswrite(arr_flat[un] + "\n")
+      end
+    end
+  end
+
 end

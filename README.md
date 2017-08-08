@@ -20,6 +20,7 @@ ruby RFT/rft.rb -list # lists all text-like files <br />
 ### Access Commands with 3 paramaters ###
 ruby RFT/rft.rb filename.format -find phrase # searches for phrase in file and, if spoted, displays the lines <br />
 ruby RFT/rft.rb --All -find phrase # searches for phrase in all textlike files and, if spoted, displays the lines <br />
+ruby RFT/rft.rbfilename.format -uniqs uniqsname.format # creates new file with uniq phrases only <br />
 
 ### Mutation Commands with 2 parameters ###
 ruby RFT/rft.rb filename.format -owtxt # overwrites text in file content by user input <br />
