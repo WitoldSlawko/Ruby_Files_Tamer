@@ -20,10 +20,10 @@ module Mutation
 
   def self.end_of_line(to_add, end_line)
     arr_lines = IO.readlines(to_add)
-    arr_lines.each do |ending|
-      ending += end_line
+    arr_lines.collect! do |ending|
+      ending += end_line + "\n"
     end
-    puts arr_lines
+    #puts arr_lines
     end_file = File.new(to_add, "w+")
     for ender in 0...arr_lines.length
       end_file.syswrite(arr_lines[ender])
