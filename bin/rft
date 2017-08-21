@@ -1,0 +1,103 @@
+#!/usr/bin/env ruby
+require_relative '../lib/rft.rb'
+
+#BEGIN {
+
+  $rft_path = File.expand_path File.dirname(__FILE__)
+  
+  Dir.chdir ($rft_path)
+  Dir.chdir("../")
+
+  $folder_path = Dir.pwd
+
+  if File.file?(ARGV[0]) && ['.txt', '.md', '.otd', '.doc', '.docx'].any? { |format| ARGV[0].include?(format) }
+    $file_name = ARGV[0]
+    $file_path = File.expand_path File.dirname(__FILE__) + '/' +ARGV[0] 
+  end
+
+#}
+
+def list
+    dir = Dir.entries($folder_path).join(' ').split(' ')
+    dir.delete('.') if dir.include? '.'
+    dir.delete('..') if dir.include? '..'
+    dir.each do |rm_file|
+      dir.delete(rm_file) unless rm_file.include? '.'
+      #dir.delete(rm_file) unless ['.txt', '.md', '.otd', '.doc', '.docx'].any? { |inc| rm_file.include? inc }
+    end
+    #dir.sort!
+    dir.each do |rm_file|
+      #dir.delete(rm_file) unless rm_file.include? '.'
+      dir.delete(rm_file) unless ['.txt', '.md', '.otd', '.doc', '.docx'].any? { |inc| rm_file.include? inc }
+    end
+    dir.sort!
+  end
+
+case ARGV.length
+
+when 1
+  Rft.reader($file_name) if File.file? ARGV[0]
+
+  case ARGV[0]
+    when '-list' then puts list
+    when '-help' then Rft.help
+    when '--All' then Rft.reader(list)
+    when '-folder' then Rft.folder
+  end
+
+when 2
+  if File.file? ARGV[0]
+    case ARGV[1]
+      when '-props' then Rft.properties($file_name)
+      when '-owtxt' then Rft.overwrite_text($file_name)
+      when '-apptxt' then Rft.append_text($file_name)
+      when '-clr' then Rft.clear_text($file_name)
+      when '-del' then Rft.del($file_name)
+      else Rft.syntax_error
+    end
+  elsif ARGV[0] == '--A'
+    case ARGV[1]
+      when '-del' then Rft.del(list)
+      else Rft.syntax_error
+    end
+  elsif ARGV[0] == '-new'
+    unless list.include? ARGV[1]
+      Rft.create(ARGV[1])
+    else
+      puts "File " + ARGV[1] + " already exist!"
+    end
+  end
+
+when 3
+  if File.file? ARGV[0]
+    case ARGV[1]
+      when '-find' then Rft.seeker($file_name)
+      when '-rename' then Rft.rename($file_name, ARGV[2])
+      when '-copy' then Rft.copy($file_name, ARGV[2])
+      when '-remove' then Rft.remove($file_name, ARGV[2])
+      when '-uniqs' then Rft.uniqs($file_name, ARGV[2])
+      when '-end' then Rft.end_of_line($file_name, ARGV[2])
+      else Rft.syntax_error
+    end
+  elsif ARGV[0] == '--All'
+    case ARGV[1]
+      when '-find' then Rft.seeker(list)
+      when '-remove' then Rft.remove(list, ARGV[2])
+      else Rft.syntax_error
+    end
+  end
+  
+when 4
+  if File.file? ARGV[0]
+    case ARGV[1]
+    when '-rep' then replace($file_name, ARGV[3])
+    else Rft.syntax_error
+    end
+  elsif ARGV[0] == '--A'
+    case ARGV[1]
+    when '-rep' then replace(list, ARGV[3])
+    else Rft.syntax_error
+    end
+  end
+
+end
