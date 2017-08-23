@@ -90,12 +90,12 @@ when 3
 when 4
   if File.file? ARGV[0]
     case ARGV[1]
-    when '-rep' then replace($file_name, ARGV[3])
+    when '-rep' then Rft.replace($file_name, ARGV[3])
     else Rft.syntax_error
     end
   elsif ARGV[0] == '--A'
     case ARGV[1]
-    when '-rep' then replace(list, ARGV[3])
+    when '-rep' then Rft.replace(list, ARGV[3])
     else Rft.syntax_error
     end
   end

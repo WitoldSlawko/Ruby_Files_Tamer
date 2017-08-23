@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["WitoldSlawko"]
   spec.email         = ["witold.slawko@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{Ruby Files Tamer - command line app for text files.}
+  spec.summary       = %q{RFT is a command line app for text files.}
+  spec.description   = %q{Ruby Files Tamer}
   # spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.homepage      = "https://github.com/WitoldSlawko/Ruby_Files_Tamer"
   spec.license       = "MIT"
